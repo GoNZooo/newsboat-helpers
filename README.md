@@ -22,3 +22,14 @@ your `~/.newsboat/config` file:
 ```
 macro d pipe-to newsboat-download-podcast
 ```
+
+## Things that don't warrant their own command
+
+### Copying the podcast URL of the current item to the clipboard
+
+```
+macro y pipe-to "awk -e '/^Podcast Download URL:/ { print $4 }' | xclip -selection clipboard"
+```
+
+Use `pbcopy` or something instead of `xclip` if you're on OS X.
+
