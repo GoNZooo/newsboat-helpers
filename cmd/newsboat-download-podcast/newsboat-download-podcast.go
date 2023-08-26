@@ -41,7 +41,12 @@ func main() {
 	os.MkdirAll(*root, 0755)
 	filepath := header.AsFilepath()
 	path := path.Join(*root, filepath)
-	downloadTo(header.PodcastUrl, path, *overwrite, *verbose)
+	err = downloadTo(header.PodcastUrl, path, *overwrite, *verbose)
+	if err != nil {
+		_ = fmt.Errorf("Error downloading file: %v", err)
+		os.Exit(1)
+	}
+	fmt.Println(path)
 }
 
 func downloadTo(url string, filepath string, overwrite bool, verbose bool) error {
