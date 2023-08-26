@@ -1,0 +1,33 @@
+version: 3
+
+tasks:
+  default:
+    cmds:
+      - task: test
+  silent: true
+
+  test:
+    depends:
+      - build
+    cmds:
+      - go test -v ./...
+    method: none
+    sources:
+      - ./cmd/**/*.go
+      - ./header/**/*.go
+      - ./**/*/*_test.go
+      - go.mod
+    silent: true
+
+  build:
+    cmds:
+      - go build -o ./bin/newsboat-download-podcast ./cmd/newsboat-download-podcast
+    sources:
+      - ./cmd/**/*.go
+      - ./header/**/*.go
+      - ./internal/**/*.go
+      - go.mod
+      - go.sum
+    silent: true
+
+interval: 250ms
