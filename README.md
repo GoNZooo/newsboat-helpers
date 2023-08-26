@@ -19,6 +19,15 @@ Run `go install ./cmd/newsboat-download-podcast` to install.
 Can be added as a macro to run on the current item with the following line in
 your `~/.newsboat/config` file:
 
+#### Automatically adding the downloaded file to `mpd`
+
+If you want to add the downloaded file to `mpd` you can pipe the result into
+`mpc add`:
+
+```
+macro a pipe-to "newsboat-download-podcast | xargs -I'%' mpc add file://%"
+```
+
 ```
 macro d pipe-to newsboat-download-podcast
 ```
